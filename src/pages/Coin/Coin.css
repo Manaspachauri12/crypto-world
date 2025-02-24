@@ -1,0 +1,55 @@
+.coin {
+  padding: 20px;
+  background: linear-gradient(rgba(30, 20, 50, 0.5), rgba(20, 20, 50, 0.5));
+  border-radius: 10px;
+  max-width: 1000px;
+  margin: auto;
+  color: white;
+}
+
+.coin h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.coin p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.coin .market-data {
+  margin-top: 30px;
+}
+
+.coin .market-data h3 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.coin .market-data p {
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+.coin .coin-graph {
+  margin-top: 40px;
+}
+
+.coin .coin-graph h3 {
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  .coin h2 {
+    font-size: 30px;
+  }
+
+  .coin p {
+    font-size: 16px;
+  }
+
+  .coin .market-data h3 {
+    font-size: 24px;
+  }
+}
