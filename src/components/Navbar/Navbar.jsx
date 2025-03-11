@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import './Navbar.css';
 import CryptOLogo from "../../assets/CryptOLogo.png";
@@ -8,6 +8,8 @@ import { CoinContext } from '../../context/CoinContext';
 const Navbar = () => {
   const { updateCurrency } = useContext(CoinContext);
   const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
+  window.auth0Login = loginWithRedirect;
+
 
   const currencyHandler = (event) => {
     const selectedCurrency = event.target.value;
@@ -33,21 +35,20 @@ const Navbar = () => {
         {/* Conditionally render login or logout based on authentication state */}
         {!isAuthenticated ? (
           <button onClick={async () => {
+            console.log("🚀 Sign Up button clicked!");
             try {
-              console.log("Sign Up button clicked!");
               await loginWithRedirect();
+              console.log("✅ Redirect triggered successfully!");
             } catch (err) {
-              console.error("Auth0 Login Error:", err);
+              console.error("❌ Auth0 Login Error:", err);
             }
           }}>
             Sign Up <img src={arrow_icon} alt="arrow icon" />
           </button>
         ) : (
           <div>
-            <span>Welcome, {user.name}</span>
-            <button onClick={() => logout({ returnTo: `${window.location.origin}/#/` })}>
-              Log Out
-            </button>
+            <span>Welcome, {user?.name}</span>
+            <button onClick={() => logout({ returnTo: window.location.origin + "/#/" })}>Log Out</button>
           </div>
         )}
       </div>
