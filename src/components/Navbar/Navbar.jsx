@@ -32,9 +32,9 @@ const Navbar = () => {
       <img src={CryptOLogo} alt="CryptOLogo" className='logo' />
       <ul>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/features">Features</Link></li>
-        <li><Link to="/pricing">Pricing</Link></li>
-        <li><Link to="/blog">Blog</Link></li>
+        <li>Features</li>
+        <li>Pricing</li>
+        <li>Blog</li>
       </ul>
       <div className="nav-right">
         <select onChange={currencyHandler} aria-label="Select currency">
@@ -43,10 +43,7 @@ const Navbar = () => {
           <option value="inr">INR</option>
         </select>
         {user ? (
-          <>
-            <span>Welcome, {user.email}</span>
-            <button onClick={handleLogout}>Logout</button>
-          </>
+          <button onClick={handleLogout}>Logout</button>
         ) : (
           <Link to="/login">
             <button>Sign In <img src={arrow_icon} alt="arrow icon" /></button>

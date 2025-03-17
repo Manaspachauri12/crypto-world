@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -14,15 +13,14 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      console.error("Login Error:", error.message);
     }
   };
 
   return (
     <div className="auth-container">
       <h2>Login</h2>
-      {error && <p className="error">{error}</p>}
       <form onSubmit={handleLogin}>
         <input
           type="email"
@@ -40,6 +38,7 @@ const Login = () => {
         />
         <button type="submit">Login</button>
       </form>
+      <p>Don't have an account? <a href="/register">Register</a></p>
     </div>
   );
 };
