@@ -10,11 +10,17 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault(); // Prevents form refresh
+    console.log("Sign-up button clicked"); // Debugging log
+
+    if (!email || !password) {
+      console.log("Email or Password is empty");
+      return;
+    }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      console.log("User registered successfully");
-      navigate("/"); // Redirect to home after signup
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("User registered successfully", userCredential.user);
+      navigate("/"); // Redirect after successful signup
     } catch (error) {
       console.error("Signup Error:", error.message);
     }
@@ -26,15 +32,21 @@ const Register = () => {
       <form onSubmit={handleRegister}>
         <input
           type="email"
+          id="email"
+          name="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="email"
         />
         <input
           type="password"
+          id="password"
+          name="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="new-password"
         />
         <button type="submit">Sign Up</button>
       </form>
