@@ -9,17 +9,19 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevents form refresh
+
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/");
+      console.log("User registered successfully");
+      navigate("/"); // Redirect to home after signup
     } catch (error) {
-      console.error("Registration Error:", error.message);
+      console.error("Signup Error:", error.message);
     }
   };
 
   return (
-    <div className="auth-container">
+    <div>
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
         <input
@@ -27,18 +29,15 @@ const Register = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
-        <button type="submit">Register</button>
+        <button type="submit">Sign Up</button>
       </form>
-      <p>Already have an account? <a href="/login">Login</a></p>
     </div>
   );
 };
